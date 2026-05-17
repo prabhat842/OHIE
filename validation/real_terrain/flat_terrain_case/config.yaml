@@ -1,0 +1,14 @@
+case: flat_terrain_small
+dataset: ../../../ohie-data/real_terrain/flat_terrain_small.npz
+solver:
+  type: diffusive_wave_fv
+  dt_s: 2
+  duration_s: 7200
+  manning_n: 0.055
+  slope_cap: 0.05
+forcing:
+  rainfall_mm_hr: 35
+metrics:
+  flood_threshold_m: 0.02
+confidence: "Medium for reproducibility; Low for site-specific accuracy"
+

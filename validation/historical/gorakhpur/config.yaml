@@ -1,0 +1,12 @@
+benchmark: gorakhpur_intervention_approximation
+inputs:
+  terrain: synthetic_low_gradient_municipal
+  rainfall_mm_hr: 45
+  interventions:
+    - detention_basin
+    - channel_carve
+    - pump
+assumptions:
+  calibration: none
+  population_exposure: omitted
+

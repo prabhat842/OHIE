@@ -1,0 +1,8 @@
+# Failure Case Suite
+
+| Case | Failure Mode | Why Not Trust | Observed | Confidence Limit |
+|---|---|---|---|---|
+| timestep_instability_proxy | coarse timestep sensitivity | The same terrain and rainfall produce materially different peak depth and flooded-cell counts when the timestep is loosened too far. | fine_max_depth=0.139m, coarse_max_depth=0.085m, fine_mass_error=1.996e-16, coarse_mass_error=1.996e-16 | Do not trust coarse timesteps in steep or highly ponded terrain without a tighter stability study. |
+| terrain_discontinuity_failure | abrupt terrain step / discontinuity | A hard elevation break can create a visually convincing but numerically artificial ponding pattern upstream of the discontinuity. | upstream_mean_depth=0.018m, downstream_mean_depth=0.016m, step_ratio=1.11 | Do not trust results across unresolved cliffs, cutlines, or DEM stitching artifacts. |
+| boundary_breakdown_failure | overwrite-style river boundary | Depth overwrite can produce a large, instantaneous storage change that looks like coupling but is really a boundary imposition. | overwrite_boundary_m3=156612.8, flux_boundary_m3=54.7, overwrite_max_depth=0.587m, flux_max_depth=0.016m | Do not use overwrite-stage boundaries for compound forcing claims once flux coupling is available. |
+| poor_parameter_regime_failure | extreme low-roughness / coarse-limiter regime | The solver becomes too energetic and under-damped when roughness is unrealistically low and slope limiting is relaxed. | max_depth=0.122m, flooded_cells=706, mass_error=1.027e-14 | Do not interpret results in this parameter regime as design-relevant hydraulics. |

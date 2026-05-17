@@ -1,0 +1,8 @@
+case: literature_behavior_table
+mode: behavior_class_reproduction
+claim_level: qualitative
+comparison:
+  exact_parity: false
+  superiority_claim: false
+  calibrated: false
+

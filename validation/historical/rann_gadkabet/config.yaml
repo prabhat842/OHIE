@@ -1,0 +1,11 @@
+benchmark: rann_gadkabet_approximation
+inputs:
+  terrain: synthetic_flat_salt_desert
+  rainfall_mm_hr: 35
+  duration_hr: 6
+  road_ridge: true
+assumptions:
+  manning_n: 0.025
+  salinity: proxy_only
+  calibration: none
+

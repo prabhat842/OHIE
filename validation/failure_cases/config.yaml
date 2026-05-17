@@ -1,0 +1,8 @@
+suite: failure_cases
+claim_level: trust_boundary_documentation
+cases:
+  - timestep_instability_proxy
+  - terrain_discontinuity_failure
+  - boundary_breakdown_failure
+  - poor_parameter_regime_failure
+

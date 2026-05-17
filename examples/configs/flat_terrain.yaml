@@ -1,0 +1,37 @@
+grid:
+  nx: 50
+  ny: 50
+  resolution: 30
+
+terrain:
+  synthetic: flat_bowl
+  slope_x: 0.02
+  slope_y: 0.02
+  bowl_depth_m: 0.25
+
+solver:
+  type: diffusive_wave
+  dt_max: 2.0
+  manning_n: 0.045
+
+routing:
+  method: dinfinity
+
+boundaries:
+  - type: rainfall
+    rate_mm_per_hr: 45
+  - type: hydrograph
+    row: 0
+    discharge_m3s: 0.5
+
+interventions:
+  - type: detention_basin
+    row: 25
+    col: 25
+    depth_m: 1.2
+    radius_cells: 4
+  - type: pump
+    row: 25
+    col: 25
+    rate_m3s: 0.5
+

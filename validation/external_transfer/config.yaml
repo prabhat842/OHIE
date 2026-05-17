@@ -1,0 +1,22 @@
+terrain:
+  site: Brahmaputra floodplain micro-extent near Dhakuakhana
+  dataset: ohie-data/external_transfer/brahmaputra_dhakuakhana_z12.tif
+  window: AWS Terrain Tiles z12 tile 3122/1726
+
+solver:
+  dt_max_s: 2.0
+  manning_n: 0.055
+  slope_cap: 0.05
+
+forcing:
+  rainfall_mm_hr: 25.0
+  duration_s: 3600
+  sample_every_s: 600
+  stage_offset_m: 0.35
+  coefficient_default: 1.0e-6
+
+analysis:
+  flooded_threshold_m: 0.02
+  sensitivity_if_needed:
+    enabled: true
+    coefficients: [2.0e-7, 5.0e-7, 1.0e-6, 2.0e-6]

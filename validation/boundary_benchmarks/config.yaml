@@ -1,0 +1,11 @@
+case: stage_response_benchmark
+dataset: ../../ohie-data/real_terrain/river_adjacent_small.npz
+stages:
+  - stage_base
+  - stage_base_plus_0_15
+  - stage_base_plus_0_30
+boundaries:
+  - overwrite
+  - flux_coupled
+claim_level: qualitative_agreement_only
+

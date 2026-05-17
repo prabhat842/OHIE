@@ -1,0 +1,15 @@
+case: river_adjacent_small
+dataset: ../../../ohie-data/real_terrain/river_adjacent_small.npz
+solver:
+  type: diffusive_wave_fv
+  dt_s: 2
+  duration_s: 3600
+  manning_n: 0.06
+  slope_cap: 0.05
+forcing:
+  rainfall_mm_hr: 25
+boundary:
+  type: river_stage
+  stage_offset_m: 0.35
+confidence: "Medium for boundary framework; Low for site-specific river hydraulics"
+

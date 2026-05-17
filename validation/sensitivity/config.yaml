@@ -1,0 +1,11 @@
+sweeps:
+  manning_n: [0.025, 0.04, 0.06, 0.09]
+  resolution_m: [10, 30, 90]
+  dt_s: [0.5, 1, 2, 5, 10]
+  rain_mm_hr: [10, 25, 50, 75]
+  detention_depth_m: [0.5, 1.0, 2.0]
+
+stability:
+  max_mass_error: 0.05
+  finite_depths_required: true
+

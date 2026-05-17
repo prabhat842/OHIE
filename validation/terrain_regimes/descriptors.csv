@@ -1,0 +1,6 @@
+key,label,mean_slope,slope_variance,relief_range_m,floodplain_width_proxy_m,terrain_roughness,elevation_variance,storage_proxy_m3,boundary_volume_m3,mass_error,near_edge_response_m,persistence_s,flooded_area_delta_cells,classification
+flat_floodplain,Flat floodplain,0.05012085,0.00096963,26.000,4423.824,0.03113894,7.53855633,39842646.778,9858.094,0.004086,0.011727,568.225,72,Strong Transfer
+moderate_river_valley,Moderate river valley,0.05950225,0.00352060,95.000,4443.097,0.05933462,68.74289494,201732498.296,9830.102,0.004074,0.009754,629.982,121,Moderate Transfer
+basin_storage,Basin storage terrain,0.04584805,0.00135229,56.000,4732.079,0.03677354,4.02247171,36332328.074,5639.798,0.002346,0.007485,446.380,31,Moderate Transfer
+steep_edge,Steep terrain edge,0.07333916,0.00501247,278.000,4485.143,0.07079881,1467.27040734,614315632.623,91966.293,0.035686,0.101310,1012.854,476,Moderate Transfer
+mixed_relief,Mixed relief terrain,0.23408309,0.03348416,698.000,2756.440,0.18298677,25604.02589729,4746240097.485,241636.773,0.084006,0.194272,1212.276,449,Weak Transfer

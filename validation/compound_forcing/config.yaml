@@ -1,0 +1,10 @@
+case: overwrite_vs_flux_coupling
+dataset: ../../ohie-data/real_terrain/river_adjacent_small.npz
+stage_offset_m: 0.35
+rainfall_mm_hr: 25
+overwrite_boundary:
+  type: river_stage_overwrite
+flux_boundary:
+  type: flux_coupled_river
+  exchange_coeff_m2_per_s: 2.5e-6
+

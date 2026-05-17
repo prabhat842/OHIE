@@ -1,0 +1,12 @@
+cases:
+  - flat_plane_rainfall
+  - bowl_depression_filling
+  - dam_break_approximation
+  - steep_vs_flat_routing
+  - closed_basin_mass_conservation
+
+pass_criteria:
+  mass_error_general: 0.01
+  mass_error_closed_basin: 1.0e-10
+  finite_depths_required: true
+

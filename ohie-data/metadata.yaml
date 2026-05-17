@@ -1,0 +1,41 @@
+datasets:
+  flat_terrain_small:
+    path: real_terrain/flat_terrain_small.npz
+    type: terrain
+    source: Flood-Resilience/Outputs/Gorakhpur_Run_20251017_043535/micro_aoi_elevation.tif
+    source_status: local historical-project-derived raster
+    license_status: repository-local derived artifact; do not treat as external redistribution proof
+    calibrated: false
+    notes: Used for low-gradient routing, stagnation, and persistence smoke checks.
+  river_adjacent_small:
+    path: real_terrain/river_adjacent_small.npz
+    type: terrain_with_boundary_mask
+    source: Flood-Resilience/Outputs/Gorakhpur_Run_20251017_043535/cropped_dem_zone_1.tif
+    source_status: local historical-project-derived raster with synthetic river-edge mask
+    license_status: repository-local derived artifact; do not treat as external redistribution proof
+    calibrated: false
+    notes: The river mask is synthetic and only validates boundary-response plumbing.
+  observed_water_mask_small:
+    path: remote_sensing/observed_water_mask_small.npz
+    type: proxy_observation_mask
+    source: Flood-Resilience/Outputs/Gorakhpur_Run_20251017_043535/cropped_flood_zone_1.tif
+    source_status: local historical flood-output mask
+    license_status: repository-local derived artifact; do not treat as raw Sentinel/Copernicus validation
+    calibrated: false
+    notes: Proxy comparison only.
+  brahmaputra_dhakuakhana_z12:
+    path: external_transfer/brahmaputra_dhakuakhana_z12.tif
+    type: open_dem_tile
+    source: AWS Terrain Tiles GeoTIFF z12/3122/1726
+    source_status: open-data-derived terrain tile
+    license_status: AWS public dataset; use as an open DEM benchmark tile only
+    calibrated: false
+    notes: Single external transfer test for Brahmaputra floodplain micro-extent near Dhakuakhana, Assam.
+  terrain_regimes:
+    path: terrain_regimes/
+    type: open_dem_tiles
+    source: AWS Terrain Tiles GeoTIFF z12
+    source_status: open-data-derived terrain regime set
+    license_status: AWS public dataset; use as an open DEM regime study only
+    calibrated: false
+    notes: Multiple micro-extents spanning flat floodplain, moderate river valley, basin storage, steep edge, and mixed relief terrain.

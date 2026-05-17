@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use OHIE, please cite it as a scientific scaffold for intervention-aware hydrodynamic experimentation."
+title: "Open Hydrodynamic Intervention Engine"
+version: "v0.1-scaffold"
+authors:
+  - family-names: Tiwari
+    given-names: Prabhat
+preferred-citation:
+  title: "Open Hydrodynamic Intervention Engine"
+  version: "v0.1-scaffold"
+  authors:
+    - family-names: Tiwari
+      given-names: Prabhat
+  type: software
+  abstract: "Open scientific research scaffold for intervention-aware hydrodynamic experimentation."

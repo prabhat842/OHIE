@@ -1,0 +1,10 @@
+case: proxy_observed_water_mask_small
+dataset: ../../ohie-data/remote_sensing/observed_water_mask_small.npz
+terrain: ../../ohie-data/real_terrain/flat_terrain_small.npz
+metrics:
+  - iou
+  - overlap_percent
+  - flooded_area_agreement
+claim_level: proxy_comparison_only
+calibrated: false
+

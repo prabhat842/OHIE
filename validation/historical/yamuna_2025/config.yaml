@@ -1,0 +1,10 @@
+benchmark: yamuna_boundary_approximation
+inputs:
+  terrain: synthetic_sloping_floodplain
+  rainfall_mm_hr: 30
+  river_stage_m: 0.35
+assumptions:
+  river_stage: prescribed
+  outfall_suppression: inferred_from_persistence
+  calibration: none
+
