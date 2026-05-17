@@ -32,7 +32,7 @@ OHIE is not:
 
 ## Current Scientific Status
 
-OHIE should be read as a scientifically serious hydrodynamic research scaffold.
+OHIE should be read as a Scientifically Serious Hydrodynamic Research Scaffold.
 
 Confidence is strongest in:
 
@@ -51,14 +51,14 @@ Uncertainty remains in:
 
 ## Scientific Evidence Chain
 
-- Phase 7: boundary defensibility
-- Phase 7R: coefficient sensitivity and under-responsiveness
-- Phase 7T: failed shared-default transferability
-- Phase 7X: partial external Brahmaputra transfer
-- Phase 7Y: terrain-regime understanding
-- Phase 7F: scientific consolidation and reviewer package
+The full internal evidence trail is archived under [docs/research_history/](docs/research_history/README.md).
 
-See [docs/scientific_position.md](docs/scientific_position.md) for the single source of truth.
+Use the public-facing chain:
+
+- [docs/scientific_position.md](docs/scientific_position.md)
+- [docs/scientific_summary.md](docs/scientific_summary.md)
+- [docs/benchmark_guide.md](docs/benchmark_guide.md)
+- [docs/evidence_matrix.md](docs/evidence_matrix.md)
 
 ## Key Findings
 
@@ -73,7 +73,7 @@ These findings are empirical and bounded.
 ## Installation
 
 ```bash
-git clone https://github.com/prabhat284/OHIE.git
+git clone https://github.com/prabhat842/OHIE.git
 cd OHIE
 pip install -r requirements.txt
 ```
@@ -98,7 +98,7 @@ The goal is to reach a first reproducible result in under 15 minutes.
 
 ## Reproducible Benchmarks
 
-The benchmark and transfer cases live under [validation/](validation/).
+The benchmark and transfer cases live under [validation/](validation/) and are summarized in [docs/benchmark_guide.md](docs/benchmark_guide.md).
 
 They cover:
 

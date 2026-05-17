@@ -1,0 +1,13 @@
+{
+  "records": [
+    {
+      "type": "channel_upgrade_concrete",
+      "location": [
+        11,
+        12
+      ],
+      "cost_inr": 9000000.0,
+      "damage_reduction_cr": 0.0031415418121220283,
+      "road_km_reduction": 0.0,
+      "roi": 0.00349060201346892,
+      "success": 

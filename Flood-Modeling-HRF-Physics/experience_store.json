@@ -1,0 +1,1237 @@
+{
+  "records": [
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 9.547442232360481e-07,
+      "road_km_reduction": 0.0,
+      "roi": 4.773721116180241e-06,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:31:07.888247"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.409898934485021,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.409898934485021,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.409898934485021,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.409898934485021,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.409898934485021,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "pump_medium",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 25000000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.03279191475880168,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        25,
+        13
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.6558382951760336,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        72,
+        28
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.6558382951760336,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        76,
+        17
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.6558382951760336,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        55,
+        51
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.0819797868970042,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.6558382951760336,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:32:23.531662"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        23,
+        10
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0013471440941117407,
+      "road_km_reduction": 0.0,
+      "roi": 0.006735720470558704,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:36:52.804712"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.2728271141588685,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.2728271141588685,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.2728271141588685,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.2728271141588685,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.2728271141588685,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "pump_medium",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 25000000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.02182616913270948,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        75,
+        19
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.0198419719388268,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        85,
+        24
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.4365233826541896,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        73,
+        29
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.4365233826541896,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        64,
+        10
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.0545654228317737,
+      "road_km_reduction": 0.012799999999999834,
+      "roi": 0.4365233826541896,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:38:09.041368"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        23,
+        10
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0013471440941117407,
+      "road_km_reduction": 0.0,
+      "roi": 0.006735720470558704,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:42:38.863042"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.17905260546952914,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.17905260546952914,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.17905260546952914,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.17905260546952914,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.17905260546952914,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "pump_medium",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 25000000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014324208437562333,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        75,
+        19
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.013022007670511211,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        61,
+        4
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.013022007670511211,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        82,
+        31
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.013022007670511211,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        85,
+        24
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.03581052109390583,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.28648416875124666,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:43:56.635826"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        23,
+        10
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0013471440941117407,
+      "road_km_reduction": 0.0,
+      "roi": 0.006735720470558704,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:48:26.994606"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "pump_medium",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 25000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.016317841681123185,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        75,
+        19
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        61,
+        4
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        82,
+        31
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        23,
+        7
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:49:33.417451"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        23,
+        10
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0013471440941117407,
+      "road_km_reduction": 0.0,
+      "roi": 0.006735720470558704,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:54:03.251798"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.2039730210140398,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "pump_medium",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 25000000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.016317841681123185,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        75,
+        19
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        61,
+        4
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        82,
+        31
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        23,
+        7
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04079460420280796,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.014834401528293805,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:55:09.094048"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        23,
+        10
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0013471440941117407,
+      "road_km_reduction": 0.0,
+      "roi": 0.006735720470558704,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T22:59:36.486280"
+    },
+    {
+      "type": "pond_large",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 140002800.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.0028836858709719426,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.20186204812825534,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.20186204812825534,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.20186204812825534,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.20186204812825534,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.20186204812825534,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        75,
+        19
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.01468087622750948,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        61,
+        4
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.01468087622750948,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        82,
+        31
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.01468087622750948,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "levee_earthen",
+      "location": [
+        25,
+        13
+      ],
+      "cost_inr": 1250000.0,
+      "damage_reduction_cr": 0.04037240962565107,
+      "road_km_reduction": 0.010599999999999988,
+      "roi": 0.32297927700520856,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-06T23:00:53.769612"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        23,
+        10
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0013471440941117407,
+      "road_km_reduction": 0.0,
+      "roi": 0.006735720470558704,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:25:44.427785"
+    },
+    {
+      "type": "pond_large",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 140002800.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.00247501244760345,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        75,
+        19
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        61,
+        4
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        82,
+        31
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        23,
+        7
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:26:29.516860"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        23,
+        10
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.0013471440941117407,
+      "road_km_reduction": 0.0,
+      "roi": 0.006735720470558704,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:29:33.071806"
+    },
+    {
+      "type": "pond_large",
+      "location": [
+        14,
+        6
+      ],
+      "cost_inr": 140002800.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.00247501244760345,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        33,
+        30
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        34,
+        15
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        41,
+        27
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        49,
+        11
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "culvert_box_2x2",
+      "location": [
+        55,
+        1
+      ],
+      "cost_inr": 2000000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.1732543363496681,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        75,
+        19
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        61,
+        4
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        82,
+        31
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    },
+    {
+      "type": "smart_valve_network",
+      "location": [
+        23,
+        7
+      ],
+      "cost_inr": 27500000.0,
+      "damage_reduction_cr": 0.034650867269933626,
+      "road_km_reduction": 0.008499999999999907,
+      "roi": 0.012600315370884956,
+      "success": true,
+      "aoi_name": "baseline",
+      "timestamp": "2025-10-07T01:30:18.193261"
+    }
+  ],
+  "version": "1.0"
+}

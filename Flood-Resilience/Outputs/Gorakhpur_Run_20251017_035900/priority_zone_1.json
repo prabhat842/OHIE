@@ -1,0 +1,13 @@
+{
+  "zone_id": 1,
+  "zone_name": "Fallback_Global_Center_AOI",
+  "bounds": {
+    "left": 353776.5389190592,
+    "bottom": 151991.34092469935,
+    "right": 355276.5389190592,
+    "top": 153491.34092469935
+  },
+  "population_exposure": 0.0,
+  "priority_pixels": 0,
+  "estimated_area_km2": 0.0
+}

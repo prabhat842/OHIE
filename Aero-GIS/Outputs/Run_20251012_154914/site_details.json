@@ -1,0 +1,28 @@
+{
+    "location_px": {
+        "x": 1725,
+        "y": 1025
+    },
+    "target_elevation_m": 358.7076923076923,
+    "best_runway_angle": 110,
+    "score": 0.24275841620236424,
+    "footprint_shape_px": {
+        "width": 100,
+        "height": 26
+    },
+    "details": {
+        "Earthworks Volume (approx m\u00b3)": 1465621.5170402818,
+        "Obstruction Penalty Score": 1.7278115404555479,
+        "Avg LULC Penalty": 1.0,
+        "Avg Road Distance (m)": 230.9095724500301
+    },
+    "transform": [
+        29.852364920916163,
+        0.0,
+        138425.929152091,
+        0.0,
+        -29.852364920916163,
+        2108339.9562271996
+    ],
+    "crs": "EPSG:32644"
+}

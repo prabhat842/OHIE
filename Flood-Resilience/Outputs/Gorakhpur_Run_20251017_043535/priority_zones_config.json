@@ -1,0 +1,10 @@
+{
+  "stage": "1.5_complete",
+  "priority_zones": 3,
+  "zone_configs": [
+    "Outputs/Gorakhpur_Run_20251017_043535/priority_zone_1.json",
+    "Outputs/Gorakhpur_Run_20251017_043535/priority_zone_2.json",
+    "Outputs/Gorakhpur_Run_20251017_043535/priority_zone_3.json"
+  ],
+  "stage1_diagnostics": "Outputs/Gorakhpur_Run_20251017_043535/diagnostics_report.json"
+}

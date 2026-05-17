@@ -1,0 +1,30 @@
+{
+    "timestamp": "2025-10-29T22:28:34.818263",
+    "project_type": "Linear Infrastructure Alignment",
+    "analysis_type": "Strategic Cost Atlas v1.0",
+    "atlas_paths": {
+        "exclusion_atlas": "Outputs/Alignment_Run_20251029_222816/exclusion_atlas.tif",
+        "earthworks_cost_atlas": "Outputs/Alignment_Run_20251029_222816/earthworks_cost_atlas.tif",
+        "vegetation_cost_atlas": "Outputs/Alignment_Run_20251029_222816/vegetation_cost_atlas.tif",
+        "hydrology_risk_atlas": "Outputs/Alignment_Run_20251029_222816/hydrology_risk_atlas.tif",
+        "social_impact_atlas": "Outputs/Alignment_Run_20251029_222816/social_impact_atlas.tif",
+        "connectivity_atlas": "Outputs/Alignment_Run_20251029_222816/connectivity_atlas.tif",
+        "dem_elevation_atlas": "Outputs/Alignment_Run_20251029_222816/dem_elevation_atlas.tif"
+    },
+    "raster_profile": {
+        "crs": "EPSG:32643",
+        "transform": [
+            537.7868949044587,
+            0.0,
+            242494.3097,
+            0.0,
+            -537.7868942446042,
+            2147858.4192,
+            0.0,
+            0.0,
+            1.0
+        ],
+        "width": 157,
+        "height": 139
+    }
+}

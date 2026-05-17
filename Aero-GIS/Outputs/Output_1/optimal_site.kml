@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>optimal_site</name>
+  <Placemark id="optimal_site.1">
+	<name>Optimal Airport Site</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>78.3780600995771,17.2018838324547 78.4061064555728,17.2022469558572 78.4062041348569,17.1952381722681 78.3781588320796,17.1948752057518 78.3780600995771,17.2018838324547</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

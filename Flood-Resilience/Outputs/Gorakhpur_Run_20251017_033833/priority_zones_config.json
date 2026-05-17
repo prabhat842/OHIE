@@ -1,0 +1,9 @@
+{
+  "stage": "1.5_complete",
+  "priority_zones": 1,
+  "zone_configs": [
+    "Outputs/Gorakhpur_Run_20251017_033833/priority_zone_1.json"
+  ],
+  "total_population_analyzed": 17339498.0,
+  "stage1_diagnostics": "Outputs/Gorakhpur_Run_20251017_033833/diagnostics_report.json"
+}

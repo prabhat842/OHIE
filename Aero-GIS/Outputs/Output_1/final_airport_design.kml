@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="1">
+        <Style id="2">
+            <LineStyle id="4">
+                <color>ff0000ff</color>
+                <colorMode>normal</colorMode>
+                <width>3</width>
+            </LineStyle>
+            <PolyStyle id="3">
+                <color>FF000000</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="5">
+            <PolyStyle id="6">
+                <color>11111199</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="7">
+            <PolyStyle id="8">
+                <color>FF8C00B3</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <name>AeroGis AI Final Design</name>
+        <Placemark id="10">
+            <name>Optimal Site Boundary</name>
+            <styleUrl>#2</styleUrl>
+            <Polygon id="9">
+                <outerBoundaryIs>
+                    <LinearRing id="11">
+                        <coordinates>78.05896215652089,18.768196142669584,0.0 78.08724937490909,18.768639399693136,0.0 78.08736975368163,18.761633630464715,0.0 78.05908370026386,18.761190550902494,0.0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+        <Placemark id="14">
+            <name>Runway</name>
+            <styleUrl>#5</styleUrl>
+            <Polygon id="13">
+                <outerBoundaryIs>
+                    <LinearRing id="15">
+                        <coordinates>77.5663586063353,19.040627937028397,0.0 77.59292080725704,19.041120486065044,0.0 77.59290975126777,19.041661781182164,0.0 77.56634746456307,19.04116921709525,0.0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+        <Placemark id="18">
+            <name>Terminal/Apron</name>
+            <styleUrl>#7</styleUrl>
+            <Polygon id="17">
+                <outerBoundaryIs>
+                    <LinearRing id="19">
+                        <coordinates>77.57770643034466,19.042734054032508,0.0 77.58150107341963,19.04280442564744,0.0 77.58146409176015,19.044608720667327,0.0 77.57766940782972,19.0445383418854,0.0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+    </Document>
+</kml>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urbanist AI by Culturiq - The Co-Pilot for Engineers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'dm-sans': ['DM Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'culturiq-dark': '#0a0a0a',
+                        'culturiq-gray': '#1a1a1a',
+                        'culturiq-green': '#cfff50',
+                        'culturiq-light': '#f5f5f5',
+                        'culturiq-glass': 'rgba(255, 255, 255, 0.05)',
+                    },
+                    backdropBlur: {
+                        'xs': '2px',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Futuristic geometric background */
+        .geometric-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(207, 255, 80, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(207, 255, 80, 0.03) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 49%, rgba(207, 255, 80, 0.01) 50%, transparent 51%);
+            pointer-events: none;
+        }
+
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Minimalist grid pattern */
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(207, 255, 80, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(207, 255, 80, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+</head>
+<body class="bg-culturiq-dark text-culturiq-light antialiased overflow-x-hidden">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass">
+        <nav class="container mx-auto px-8 py-6 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-2xl font-normal text-white tracking-tight font-dm-sans">urbanist<span class="text-culturiq-green">.ai</span></a>
+                <div class="h-6 w-px bg-culturiq-green"></div>
+                <span class="text-xs font-medium text-culturiq-green tracking-wider">BETA</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#platform" class="text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium tracking-wide">Platform</a>
+                <a href="#verticals" class="text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium tracking-wide">Verticals</a>
+                <a href="#validation" class="text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium tracking-wide">Validation</a>
+                <div class="h-4 w-px bg-gray-600"></div>
+                <a href="#cta" class="text-culturiq-green hover:text-white transition-all duration-300 text-sm font-medium tracking-wide border border-culturiq-green hover:border-white px-4 py-2 rounded-sm">
+                    Join Waitlist
+                </a>
+            </div>
+            <div class="md:hidden">
+                <a href="#cta" class="text-culturiq-green hover:text-white transition-all duration-300 text-sm font-medium tracking-wide border border-culturiq-green hover:border-white px-3 py-1.5 rounded-sm">
+                    Join
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="pt-32 pb-32 geometric-bg relative overflow-hidden">
+            <div class="container mx-auto px-8 max-w-6xl">
+                <div class="grid lg:grid-cols-5 gap-12 items-center">
+                    <!-- Video Placeholder -->
+                    <div class="animate-fade-in order-2 lg:order-1 lg:col-span-2">
+                        <div class="aspect-video bg-gradient-to-br from-gray-900/80 to-gray-800/60 rounded-sm flex items-center justify-center border border-white/5">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-culturiq-green/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-culturiq-green/20">
+                                    <svg class="w-8 h-8 text-culturiq-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l.707.707A1 1 0 0012.414 11H15m2 0h1.586a1 1 0 01.707.293l.707.707A1 1 0 0021 12.414V15m0 2a2 2 0 01-2 2h-1.586a1 1 0 01-.707-.293l-.707-.707A1 1 0 0017 16.586V15m-2 0H9m0-2H7.414a1 1 0 00-.707.293l-.707.707A1 1 0 006 16.414V19a2 2 0 002 2h1.586a1 1 0 00.707-.293l.707-.707A1 1 0 0011 19.586V18"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-gray-400 text-sm font-medium">Video Placeholder</p>
+                                <p class="text-gray-500 text-xs mt-1">Coming Soon</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text Side -->
+                    <div class="animate-fade-in order-1 lg:order-2 lg:col-span-3 text-center lg:text-left">
+                        <h1 class="text-5xl md:text-7xl lg:text-6xl xl:text-7xl font-normal text-white leading-none mb-8 tracking-tight font-dm-sans">
+                            Co-Pilot for Engineers
+                        </h1>
+                        <div class="w-16 h-px bg-culturiq-green mx-auto lg:mx-0 mb-8"></div>
+                        <p class="text-lg md:text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Urbanist is a <span class="text-culturiq-green font-semibold">Physics-Grounded AI</span> platform that de-risks critical infrastructure by designing and validating hundreds of scenarios in hours, not months.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="#cta" class="inline-flex items-center px-8 py-3 border border-culturiq-green text-culturiq-green hover:bg-culturiq-green hover:text-culturiq-dark transition-all duration-300 text-sm font-medium tracking-wide rounded-sm group">
+                                Request a Demo
+                                <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                            <a href="#platform" class="inline-flex items-center px-8 py-3 text-gray-400 hover:text-white transition-all duration-300 text-sm font-medium tracking-wide">
+                                Learn More
+                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="validation" class="py-16">
+            <div class="container mx-auto px-8">
+                <div class="text-center mb-12">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2 font-dm-sans">Validation</p>
+                    <h3 class="text-lg font-normal text-white font-dm-sans">Trusted by Industry Leaders</h3>
+                </div>
+                <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
+                    <span class="text-lg font-semibold text-gray-400 hover:text-white transition-colors duration-300">NVIDIA Inception</span>
+                    <span class="text-base font-medium text-gray-500 hover:text-gray-300 transition-colors duration-300">Microsoft for Startups</span>
+                    <span class="text-base font-medium text-gray-500 hover:text-gray-300 transition-colors duration-300">HEC Paris</span>
+                    <span class="text-lg font-semibold text-gray-400 hover:text-white transition-colors duration-300">ARUP</span>
+                    <span class="text-lg font-semibold text-gray-400 hover:text-white transition-colors duration-300">LODHA</span>
+                    <span class="text-lg font-semibold text-gray-400 hover:text-white transition-colors duration-300">GMR</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="platform" class="py-32 relative">
+            <div class="container mx-auto px-8">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <h2 class="text-5xl md:text-6xl font-normal text-white mb-6 tracking-tight font-dm-sans">One Platform, End-to-End.</h2>
+                    <div class="w-16 h-px bg-culturiq-green mx-auto mb-8"></div>
+                    <p class="text-xl text-gray-400 leading-relaxed">
+                        Traditional planning is slow, expensive, and reactive. Our platform turns your GIS data into optimized, physics-validated solutions in three automated stages.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-20">
+                    <div class="glass p-8 rounded-sm border border-white/10 hover:border-culturiq-green/30 transition-all duration-500 group">
+                        <div class="flex items-center mb-6">
+                            <span class="text-culturiq-green font-mono text-xs tracking-wider mr-3">01</span>
+                            <div class="h-px bg-culturiq-green flex-1"></div>
+                        </div>
+                        <h3 class="text-2xl font-normal text-white mb-4 group-hover:text-culturiq-green transition-colors font-dm-sans">Diagnostics</h3>
+                        <p class="text-gray-400 leading-relaxed">Our engine processes your raw GIS data (DEM, LULC, Soil) to create a "Cost & Suitability Atlas," identifying all risks and opportunities.</p>
+                    </div>
+                    <div class="glass p-8 rounded-sm border border-white/10 hover:border-culturiq-green/30 transition-all duration-500 group">
+                        <div class="flex items-center mb-6">
+                            <span class="text-culturiq-green font-mono text-xs tracking-wider mr-3">02</span>
+                            <div class="h-px bg-culturiq-green flex-1"></div>
+                        </div>
+                        <h3 class="text-2xl font-normal text-white mb-4 group-hover:text-culturiq-green transition-colors font-dm-sans">AI Planning</h3>
+                        <p class="text-gray-400 leading-relaxed">A Genetic Algorithm explores thousands of potential solutions—runway alignments, bridge paths, or flood pond layouts—evaluating each against the atlas to find the top 5 "best" options.</p>
+                    </div>
+                    <div class="glass p-8 rounded-sm border border-white/10 hover:border-culturiq-green/30 transition-all duration-500 group">
+                        <div class="flex items-center mb-6">
+                            <span class="text-culturiq-green font-mono text-xs tracking-wider mr-3">03</span>
+                            <div class="h-px bg-culturiq-green flex-1"></div>
+                        </div>
+                        <h3 class="text-2xl font-normal text-white mb-4 group-hover:text-culturiq-green transition-colors font-dm-sans">Validation</h3>
+                        <p class="text-gray-400 leading-relaxed">We run your top plans through our proprietary **HRF-SWE physics solver** to simulate real-world stress (like a storm surge or flood event), ensuring the final design is not just cheap, but resilient.</p>
+                    </div>
+                </div>
+
+                <div class="glass border border-white/10 rounded-sm p-2 max-w-4xl mx-auto">
+                    <div class="bg-gradient-to-br from-gray-900/50 to-gray-800/50 rounded-sm p-8 text-center">
+                        <p class="text-gray-500 text-sm font-medium">Platform Interface Preview</p>
+                        <div class="mt-4 w-full h-64 bg-gray-800/50 rounded-sm flex items-center justify-center border border-dashed border-gray-600">
+                            <span class="text-gray-500 text-sm">Urbanist.ai Interface Mockup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="verticals" class="py-32">
+            <div class="container mx-auto px-8">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <h2 class="text-5xl md:text-6xl font-normal text-white mb-6 tracking-tight font-dm-sans">A Domain-Agnostic Engine</h2>
+                    <div class="w-16 h-px bg-culturiq-green mx-auto mb-8"></div>
+                    <p class="text-xl text-gray-400 leading-relaxed">
+                        Our platform is a true AI-native system. The same core engine adapts to any high-stakes engineering problem.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="group cursor-pointer">
+                        <div class="glass p-8 rounded-sm border border-white/10 hover:border-culturiq-green/30 transition-all duration-500 h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="w-2 h-2 bg-culturiq-green rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <div class="h-px bg-culturiq-green/50 flex-1"></div>
+                            </div>
+                            <h4 class="text-xl font-normal text-white mb-4 group-hover:text-culturiq-green transition-colors font-dm-sans">Flood Resilience</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm">Optimize flood interventions (levees, ponds, bioswales) for an entire city. Validated with Arup.</p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="glass p-8 rounded-sm border border-white/10 hover:border-culturiq-green/30 transition-all duration-500 h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="w-2 h-2 bg-culturiq-green rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <div class="h-px bg-culturiq-green/50 flex-1"></div>
+                            </div>
+                            <h4 class="text-xl font-normal text-white mb-4 group-hover:text-culturiq-green transition-colors font-dm-sans">Linear Alignment</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm">Find the optimal, lowest-cost path for roads, bridges, and rail, balancing cost, environment, and physics. Validated with Lodha.</p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="glass p-8 rounded-sm border border-white/10 hover:border-culturiq-green/30 transition-all duration-500 h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="w-2 h-2 bg-culturiq-green rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <div class="h-px bg-culturiq-green/50 flex-1"></div>
+                            </div>
+                            <h4 class="text-xl font-normal text-white mb-4 group-hover:text-culturiq-green transition-colors font-dm-sans">Water Management</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm">Identify high-opportunity zones for water harvesting, groundwater recharge, and solar pumps. Validated with IWMI.</p>
+                        </div>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="glass p-8 rounded-sm border border-white/10 hover:border-culturiq-green/30 transition-all duration-500 h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="w-2 h-2 bg-culturiq-green rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                                <div class="h-px bg-culturiq-green/50 flex-1"></div>
+                            </div>
+                            <h4 class="text-xl font-normal text-white mb-4 group-hover:text-culturiq-green transition-colors font-dm-sans">AeroGis & Site Planning</h4>
+                            <p class="text-gray-400 leading-relaxed text-sm">Run end-to-end analysis: from optimal airport site selection to genetic layout design and flood engineering. Validated with GMR.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cta" class="py-32 text-center relative">
+            <div class="container mx-auto px-8 max-w-2xl">
+                <div class="animate-slide-up">
+                    <h2 class="text-5xl md:text-6xl font-normal text-white mb-6 tracking-tight font-dm-sans">Join the Urbanist Beta</h2>
+                    <div class="w-16 h-px bg-culturiq-green mx-auto mb-8"></div>
+                    <p class="text-xl text-gray-400 mb-12 leading-relaxed">
+                        We're inviting a limited number of engineering firms, developers, and asset owners to our paid Beta program. Stop guessing, start simulating.
+                    </p>
+
+                    <div class="glass border border-white/10 rounded-sm p-8">
+                        <form action="YOUR_FORM_ENDPOINT" method="POST" class="space-y-8">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="full-name" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Full Name</label>
+                                    <input type="text" name="full-name" id="full-name" required class="w-full bg-transparent border-b border-gray-600 py-2 text-white focus:outline-none focus:border-culturiq-green transition-colors placeholder-gray-600" placeholder="Enter your name">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Work Email</label>
+                                    <input type="email" name="email" id="email" required class="w-full bg-transparent border-b border-gray-600 py-2 text-white focus:outline-none focus:border-culturiq-green transition-colors placeholder-gray-600" placeholder="your.email@company.com">
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="organization" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Organization</label>
+                                    <input type="text" name="organization" id="organization" class="w-full bg-transparent border-b border-gray-600 py-2 text-white focus:outline-none focus:border-culturiq-green transition-colors placeholder-gray-600" placeholder="Your company">
+                                </div>
+                                <div>
+                                    <label for="interest" class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Interest</label>
+                                    <select name="interest" id="interest" class="w-full bg-transparent border-b border-gray-600 py-2 text-white focus:outline-none focus:border-culturiq-green transition-colors">
+                                        <option value="" class="bg-culturiq-gray">Select interest...</option>
+                                        <option value="saas" class="bg-culturiq-gray">SaaS Beta Waitlist</option>
+                                        <option value="ide" class="bg-culturiq-gray">IDE Waitlist</option>
+                                        <option value="demo" class="bg-culturiq-gray">Request a Demo</option>
+                                        <option value="partnership" class="bg-culturiq-gray">Partnership/Investment</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="pt-4">
+                                <button type="submit" class="w-full px-8 py-3 border border-culturiq-green text-culturiq-green hover:bg-culturiq-green hover:text-culturiq-dark transition-all duration-300 text-sm font-medium tracking-wide rounded-sm group">
+                                    Submit Request
+                                    <div class="w-4 h-px bg-current ml-2 inline-block group-hover:w-6 transition-all duration-300"></div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-16">
+        <div class="container mx-auto px-8 text-center">
+            <div class="flex items-center justify-center space-x-8 mb-8">
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent flex-1"></div>
+                <span class="text-xs font-medium text-gray-500 uppercase tracking-widest">Urbanist.ai</span>
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent flex-1"></div>
+            </div>
+            <div class="text-gray-500 text-sm space-y-2">
+                <p>&copy; 2025 Culturiq Research Pvt. Ltd. All rights reserved.</p>
+                <p class="font-medium">Forged in Chaos. Built on Physics.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

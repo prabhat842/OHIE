@@ -98,11 +98,9 @@ This is a **proxy comparison only**. It computes IoU, observed overlap percent, 
 Before using OHIE for research claims, read:
 
 ```text
-docs/scientific-honesty.md
-docs/solver-limitations.md
-docs/numerical-stability.md
-docs/reproducibility.md
+docs/known_limitations.md
+docs/scientific_position.md
+docs/benchmark_guide.md
 ```
 
 OHIE is currently suitable for transparent, reproducible experimentation. It is not yet a calibrated municipal flood forecasting system.
-

@@ -1,0 +1,13 @@
+{
+  "zone_id": 1,
+  "zone_name": "Intelligent_Micro_AOI",
+  "bounds": {
+    "left": 357629.9276,
+    "bottom": 148036.4326,
+    "right": 358432.4436,
+    "top": 148869.81459999998
+  },
+  "population_exposure": 17339498.0,
+  "priority_pixels": 50,
+  "estimated_area_km2": 0.6688023891119893
+}

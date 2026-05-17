@@ -1,0 +1,250 @@
+#@title # Project Chimera (V23.1 - Final Performance Report)
+#@markdown ## This is the definitive, final version of the successful QCA Meta-Optimizer.
+#@markdown It includes the complete performance report comparing the runtime and
+#@markdown accuracy of the Ground Truth, Baseline, and the final optimized solver.
+#@markdown ---
+#@markdown *Date: Tuesday, September 30, 2025 at 4:16 PM*
+
+import numpy as np
+import cupy as cp
+_xp = cp
+import matplotlib.pyplot as plt
+import time
+import gc
+import warnings
+from scipy.interpolate import griddata
+from sklearn.manifold import Isomap
+from dataclasses import dataclass
+from typing import List, Dict, Any, Tuple
+
+warnings.filterwarnings('ignore', category=UserWarning); plt.style.use('seaborn-v0_8-whitegrid')
+
+# ==============================================================================
+# Part 1: The "Black Box" Physics & Cost Simulation
+# ==============================================================================
+print("Defining Part 1: The Physics and Cost Simulation Environment...")
+
+@dataclass
+class SimConfig: NX: int; NY: int; LX: float = 200.0; LY: float = 200.0; T_END: float = 4.0
+
+GT_CONF, MODEL_CONF = SimConfig(NX=256, NY=256), SimConfig(NX=64, NY=64)
+
+@dataclass
+class Grid:
+    nx: int; ny: int; Lx: float; Ly: float
+    def __post_init__(self):
+        self.dx=self.Lx/self.nx; self.dy=self.Ly/self.ny; x=_xp.arange(self.nx)*self.dx+(0.5*self.dx); y=_xp.arange(self.ny)*self.dy+(0.5*self.dy)
+        self.X,self.Y=_xp.meshgrid(x,y,indexing="ij"); kx=2*np.pi*_xp.fft.fftfreq(self.nx,d=self.dx); ky=2*np.pi*_xp.fft.fftfreq(self.ny,d=self.dy)
+        self.KX,self.KY=_xp.meshgrid(kx,ky,indexing="ij")
+
+@dataclass
+class ExponentialFilter:
+    alpha: float = 36.0; p: int = 8
+    def apply(self, grid: Grid, f):
+        eta=_xp.sqrt((grid.KX/(np.pi/grid.dx))**2+(grid.KY/(np.pi/grid.dy))**2); sigma=_xp.exp(-self.alpha*(eta**self.p)); return _xp.fft.ifft2(_xp.fft.fft2(f)*sigma).real
+
+@dataclass
+class SWEParams: g: float=9.81; h_min: float=1e-4; cfl: float=0.15
+
+class HRFSolver:
+    def __init__(self, grid: Grid, prm: SWEParams, filt: ExponentialFilter): self.grid, self.prm, self.filt = grid, prm, filt
+    def initialize(self, h0, u0, v0): self.h,self.u,self.v,self.time=_xp.array(h0),_xp.array(u0),_xp.array(v0),0.0
+    def rhs(self, h, u, v):
+        hu,hv=h*u,h*v; p_term=0.5*self.prm.g*h*h
+        dhdt=-(_xp.fft.ifft2(1j*self.grid.KX*_xp.fft.fft2(hu)).real+_xp.fft.ifft2(1j*self.grid.KY*_xp.fft.fft2(hv)).real)
+        dudt=-(_xp.fft.ifft2(1j*self.grid.KX*_xp.fft.fft2(hu*u)).real+_xp.fft.ifft2(1j*self.grid.KY*_xp.fft.fft2(hv*u)).real)-_xp.fft.ifft2(1j*self.grid.KX*_xp.fft.fft2(p_term)).real/(h+1e-12)
+        dvdt=-(_xp.fft.ifft2(1j*self.grid.KX*_xp.fft.fft2(hu*v)).real+_xp.fft.ifft2(1j*self.grid.KY*_xp.fft.fft2(hv*v)).real)-_xp.fft.ifft2(1j*self.grid.KY*_xp.fft.fft2(p_term)).real/(h+1e-12)
+        return dhdt,dudt,dvdt
+    def step(self):
+        vmax=_xp.max(_xp.sqrt(self.u**2+self.v**2)+_xp.sqrt(self.prm.g*self.h)); dt=min(self.prm.cfl*min(self.grid.dx,self.grid.dy)/max(1e-6,vmax), 0.05)
+        dh,du,dv=self.rhs(self.h,self.u,self.v); self.h,self.u,self.v=self.h+dt*dh,self.u+dt*du,self.v+dt*dv
+        self.h,self.u,self.v=self.filt.apply(self.grid,self.h),self.filt.apply(self.grid,self.u),self.filt.apply(self.grid,self.v)
+        self.h[self.h<self.prm.h_min]=self.prm.h_min; self.time+=dt
+    def run(self, t_end, damper_params=None, grid=None):
+        while self.time < t_end:
+            if damper_params:
+                strength = damper_params['a'] * np.exp(-damper_params['b'] * self.time)
+                cutoff = damper_params['c']
+                self.h, self.u, self.v = apply_spectral_damper(self.h, self.u, self.v, grid, strength, cutoff)
+            self.step()
+        return {'h': self.h}
+
+def setup_circular_dam_break(grid,h_high,h_low):
+    center_x,center_y=grid.Lx/2.0,grid.Ly/2.0; radius=grid.Lx*0.25
+    condition=_xp.sqrt((grid.X-center_x)**2+(grid.Y-center_y)**2)<radius; h0=_xp.where(condition,h_high,h_low); return h0,_xp.zeros_like(h0),_xp.zeros_like(h0)
+
+def downsample_state(h_h, grid_h, grid_l):
+    points_h = np.array([cp.asnumpy(grid_h.X).flatten(), cp.asnumpy(grid_h.Y).flatten()]).T
+    points_l = np.array([cp.asnumpy(grid_l.X).flatten(), cp.asnumpy(grid_l.Y).flatten()]).T
+    h_l_flat = griddata(points_h, cp.asnumpy(h_h).flatten(), points_l, method='linear', fill_value=cp.asnumpy(h_h).mean())
+    return _xp.asarray(h_l_flat.reshape(grid_l.nx, grid_l.ny))
+
+def apply_spectral_damper(h, u, v, grid, strength, cutoff_frac):
+    if strength <= 1e-6: return h, u, v
+    h_fft = _xp.fft.fft2(h); mask = _xp.ones_like(h, dtype=float); shifted_mask = _xp.fft.fftshift(mask)
+    cx,cy=grid.nx//2,grid.ny//2; kx_c,ky_c=int(cx*cutoff_frac),int(cy*cutoff_frac); shifted_mask[cx-kx_c:cx+kx_c,cy-ky_c:cy+ky_c]=0
+    high_pass_filter = _xp.fft.ifftshift(shifted_mask)
+    h_fft_damped = h_fft * (1 - high_pass_filter)
+    h_fft_blended = (1.0 - strength) * h_fft + strength * h_fft_damped
+    return _xp.fft.ifft2(h_fft_blended).real, u, v
+
+memoization_cache = {}
+def run_simulation_and_get_cost(design_params: Dict, grid, h0, u0, v0, ground_truth_h):
+    param_tuple = tuple(sorted(design_params.items())); param_tuple = tuple(round(v, 4) for k, v in param_tuple)
+    if param_tuple in memoization_cache: return memoization_cache[param_tuple]
+    prm = SWEParams(cfl=design_params['cfl'])
+    filt = ExponentialFilter(alpha=design_params['filter_alpha'], p=int(design_params['filter_p']))
+    solver = HRFSolver(grid, prm, filt)
+    solver.initialize(h0.copy(), u0.copy(), v0.copy())
+    result = solver.run(MODEL_CONF.T_END, damper_params=design_params, grid=grid)
+    cost = float(_xp.mean((result['h'] - ground_truth_h)**2).get())
+    memoization_cache[param_tuple] = cost
+    return cost
+
+# ==============================================================================
+# Part 2: The Meta-Optimizer QCA
+# ==============================================================================
+print("Defining Part 2: The Meta-Optimizer QCA...")
+
+@dataclass
+class QuantumState:
+    amplitudes: np.ndarray; hypotheses: List[str]
+
+@dataclass
+class DesignExperience:
+    design_params: Dict[str, float]; cost: float; reward: float; q_state: QuantumState
+
+class GeometricCausalEngine:
+    def __init__(self, manifold_dim: int = 2):
+        self.experiences: List[DesignExperience] = []; self.manifold_coordinates: np.ndarray = None
+        self.isomap = Isomap(n_components=manifold_dim, n_neighbors=5); self.manifold_is_stale = True
+    def learn_manifold(self):
+        if len(self.experiences) < 7: return
+        print("🧠 QCA is learning the geometry of the design space...")
+        design_vectors = np.array([exp.q_state.amplitudes for exp in self.experiences])
+        self.manifold_coordinates = self.isomap.fit_transform(design_vectors)
+        self.manifold_is_stale = False
+
+class QCA_MetaOptimizer:
+    def __init__(self):
+        self.engine = GeometricCausalEngine(); self.best_reward = -np.inf; self.best_design = None
+        self.pruned_zones: List[Tuple[np.ndarray, np.ndarray]] = []
+
+    def learn_from_experience(self, params, cost, reward):
+        hypotheses = list(params.keys()); amplitudes = np.array(list(params.values()))
+        q_state = QuantumState(amplitudes=amplitudes, hypotheses=hypotheses)
+        exp = DesignExperience(design_params=params, cost=cost, reward=reward, q_state=q_state)
+        self.engine.experiences.append(exp); self.engine.manifold_is_stale = True
+        if reward > self.best_reward:
+            self.best_reward = reward; self.best_design = params
+            
+    def analyze_and_prune(self, baseline_cost: float):
+        print("🔍 QCA is analyzing failures to prune the search space...")
+        bad_experiences = [e for e in self.engine.experiences if e.cost > baseline_cost * 1.5]
+        if len(bad_experiences) < 5: return
+        bad_design_vectors = np.array([exp.q_state.amplitudes for exp in bad_experiences])
+        failure_center = np.mean(bad_design_vectors, axis=0)
+        failure_radius = np.std(bad_design_vectors, axis=0) * 2
+        self.pruned_zones.append((failure_center, failure_radius))
+        print(f"🚫 New pruning zone learned.")
+
+    def decide_next_design_to_test(self, episode, total_episodes):
+        if self.engine.manifold_is_stale: self.engine.learn_manifold()
+        epsilon = 1.0 - (episode / total_episodes)**2
+        if np.random.rand() < epsilon or self.best_design is None:
+            print("- AI is in EXPLORATION mode (guided by pruning)...")
+            for _ in range(100):
+                proposal_params = {
+                    'a': np.random.uniform(0.5, 1.5), 'b': np.random.uniform(1.0, 5.0), 'c': np.random.uniform(0.2, 0.45),
+                    'cfl': np.random.uniform(0.1, 0.4), 'filter_alpha': np.random.uniform(20, 50), 'filter_p': np.random.choice([4, 6, 8, 10])
+                }
+                proposal_vector = np.array(list(proposal_params.values()))
+                is_in_pruned_zone = any(np.all(np.abs(proposal_vector - center) < radius) for center, radius in self.pruned_zones)
+                if not is_in_pruned_zone: return proposal_params
+            return proposal_params
+        else:
+            print("- AI is in EXPLOITATION mode (manifold-guided).")
+            if self.engine.manifold_coordinates is None: return self.best_design
+            best_exp_idx = np.argmax([exp.reward for exp in self.engine.experiences])
+            best_design_manifold_coord = self.engine.manifold_coordinates[best_exp_idx]
+            distances = np.linalg.norm(self.engine.manifold_coordinates - best_design_manifold_coord, axis=1)
+            neighbor_indices = np.argsort(distances)[1:4]
+            neighbor_to_blend_with = self.engine.experiences[np.random.choice(neighbor_indices)].design_params
+            new_design = {k: (self.best_design[k] + v) / 2.0 + np.random.normal(0, 0.05 * (self.best_design[k] + v) / 2.0) for k, v in neighbor_to_blend_with.items()}
+            return new_design
+
+# ==============================================================================
+# Part 3: The Main Optimization Loop
+# ==============================================================================
+print("Defining Part 3: The Main Optimization Loop...")
+
+def run_meta_optimization(num_episodes=100):
+    print("\n" + "="*80 + f"\n🔬 STARTING QCA META-OPTIMIZER ({num_episodes} DESIGN ITERATIONS)\n" + "="*80)
+    
+    grid_gt = Grid(nx=GT_CONF.NX,ny=GT_CONF.NY,Lx=GT_CONF.LX,Ly=GT_CONF.LY); grid_model = Grid(nx=MODEL_CONF.NX,ny=MODEL_CONF.NY,Lx=MODEL_CONF.LX,Ly=MODEL_CONF.LY)
+    test_scenario = {'h_high': 2.8, 'h_low': 0.7}
+    runtimes = {}
+    
+    print("Pre-calculating Ground Truth...", end=""); start_time = time.time()
+    h0_gt, u0_gt, v0_gt = setup_circular_dam_break(grid_gt, **test_scenario); solver_gt = HRFSolver(grid_gt, SWEParams(), ExponentialFilter()); solver_gt.initialize(h0_gt, u0_gt, v0_gt)
+    ground_truth_h = downsample_state(solver_gt.run(GT_CONF.T_END)['h'], grid_gt, grid_model)
+    runtimes['Ground Truth'] = time.time() - start_time; print(f" Done in {runtimes['Ground Truth']:.2f}s.")
+    
+    print("Pre-calculating Baseline...", end=""); start_time = time.time()
+    h0_model, u0_model, v0_model = setup_circular_dam_break(grid_model, **test_scenario); solver_base = HRFSolver(grid_model, SWEParams(), ExponentialFilter()); solver_base.initialize(h0_model.copy(), u0_model.copy(), v0_model.copy())
+    baseline_result = solver_base.run(MODEL_CONF.T_END); baseline_cost = float(_xp.mean((baseline_result['h'] - ground_truth_h)**2).get())
+    runtimes['Baseline'] = time.time() - start_time; print(f" Done in {runtimes['Baseline']:.2f}s. Baseline Cost (MSE): {baseline_cost:.6f}")
+    
+    qca_agent = QCA_MetaOptimizer(); optimization_start_time = time.time()
+    for episode in range(num_episodes):
+        if episode > 0 and episode % 25 == 0: qca_agent.analyze_and_prune(baseline_cost)
+        design_to_test = qca_agent.decide_next_design_to_test(episode, num_episodes)
+        cost = run_simulation_and_get_cost(design_to_test, grid_model, h0_model, u0_model, v0_model, ground_truth_h)
+        qca_agent.learn_from_experience(design_to_test, cost, -cost)
+        print(f"Iter {episode+1}/{num_episodes} | Test Cost: {cost:.6f} | Best Cost So Far: {-qca_agent.best_reward:.6f}")
+
+    print(f"\n✅ Optimization complete. Search took {time.time() - optimization_start_time:.2f}s")
+    
+    print("\n--- Running final optimized model for validation ---", end=""); start_time = time.time()
+    best_params = qca_agent.best_design
+    prm_best = SWEParams(cfl=best_params['cfl'])
+    filt_best = ExponentialFilter(alpha=best_params['filter_alpha'], p=int(best_params['filter_p']))
+    solver_best = HRFSolver(grid_model, prm_best, filt_best); solver_best.initialize(h0_model.copy(), u0_model.copy(), v0_model.copy())
+    optimized_result = solver_best.run(MODEL_CONF.T_END, damper_params=best_params, grid=grid_model)
+    runtimes['Optimized Hybrid'] = time.time() - start_time; print(f" Done in {runtimes['Optimized Hybrid']:.2f}s.")
+    
+    # --- FINAL PERFORMANCE REPORT ---
+    print("\n--- FINAL PERFORMANCE REPORT ---")
+    final_cost = -qca_agent.best_reward
+    improvement = (baseline_cost - final_cost) / baseline_cost * 100
+    print(f"\nOptimal Design Found:")
+    for key, val in best_params.items(): print(f"- {key}: {val:.4f}")
+    
+    print("\n" + "="*60)
+    print(f"{'Model':<25} | {'Runtime (s)':<15} | {'MSE vs Hi-Res':<15}")
+    print("-"*60)
+    print(f"{'Ground Truth':<25} | {runtimes['Ground Truth']:<15.2f} | {'N/A':<15}")
+    print(f"{'Baseline':<25} | {runtimes['Baseline']:<15.2f} | {baseline_cost:<15.6f}")
+    print(f"{'Optimized Hybrid':<25} | {runtimes['Optimized Hybrid']:<15.2f} | {final_cost:<15.6f}")
+    print("="*60)
+    print(f"\n🏆 FINAL VERDICT: The QCA Meta-Optimizer discovered a superior")
+    print(f"   solver design, improving accuracy by {improvement:.2f}%")
+    
+    # --- VISUALIZATION ---
+    plt.figure(figsize=(12, 5)); costs = [exp.cost for exp in qca_agent.engine.experiences]
+    plt.plot(range(1, num_episodes + 1), costs, 'o-', alpha=0.6, label='Cost of Tested Designs'); plt.axhline(baseline_cost, color='r', linestyle='--', label=f'Baseline Cost')
+    plt.axhline(final_cost, color='g', linestyle='--', label=f'Best Found Cost'); plt.title('QCA Meta-Optimizer Convergence', fontsize=16)
+    plt.xlabel('Design Iteration'); plt.ylabel('Cost (Final MSE)'); plt.legend(); plt.grid(True); plt.yscale('log'); plt.show()
+
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5.5), sharey=True)
+    plot_data = {'Ground Truth': cp.asnumpy(ground_truth_h), 'Baseline': cp.asnumpy(baseline_result['h']), 'Optimized Hybrid': cp.asnumpy(optimized_result['h'])}
+    vmin, vmax = plot_data['Ground Truth'].min(), plot_data['Ground Truth'].max()
+    titles = ['Ground Truth (Downsampled)', 'Baseline (Default Params)', 'QCA Meta-Optimized Solver']
+    
+    for i, (title, data) in enumerate(plot_data.items()):
+        pcm = axes[i].pcolormesh(cp.asnumpy(grid_model.X), cp.asnumpy(grid_model.Y), data, vmin=vmin, vmax=vmax, cmap='viridis')
+        axes[i].set_title(title, fontsize=14); axes[i].set_xlabel('Position x (m)'); axes[i].set_aspect('equal', 'box')
+    axes[0].set_ylabel('Position y (m)'); fig.colorbar(pcm, ax=axes.ravel().tolist(), shrink=0.85); fig.suptitle('Project Chimera V23 - Final Result', fontsize=18); plt.show()
+
+if __name__ == "__main__":
+    run_meta_optimization()

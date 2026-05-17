@@ -1,0 +1,27 @@
+{
+    "timestamp": "2025-10-17T04:36:10.552845",
+    "city": "Singapore",
+    "analysis_type": "Strategic Atlas v3.4 (Drainage-Informed)",
+    "atlas_paths": {
+        "pond_suitability_map": "Outputs/Gorakhpur_Run_20251017_043535/pond_suitability.tif",
+        "levee_suitability_map": "Outputs/Gorakhpur_Run_20251017_043535/levee_suitability.tif",
+        "bioswale_suitability_map": "Outputs/Gorakhpur_Run_20251017_043535/bioswale_suitability.tif",
+        "culvert_opportunities_map": "Outputs/Gorakhpur_Run_20251017_043535/culvert_opportunities.shp"
+    },
+    "raster_profile": {
+        "crs": "EPSG:32648",
+        "transform": [
+            30.866037032777434,
+            0.0,
+            344897.7026,
+            0.0,
+            -30.866037063563105,
+            162589.7516,
+            0.0,
+            0.0,
+            1.0
+        ],
+        "width": 1739,
+        "height": 1117
+    }
+}

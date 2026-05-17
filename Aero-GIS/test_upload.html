@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test File Upload</title>
+</head>
+<body>
+    <h1>Test File Upload</h1>
+    <input type="file" id="fileInput" accept=".tif,.tiff">
+    <button onclick="testUpload()">Upload Test File</button>
+    <div id="result"></div>
+
+    <script>
+        async function testUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                document.getElementById('result').innerHTML = 'Please select a file first';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('file_type', 'dem');
+
+            try {
+                const response = await fetch('http://localhost:5000/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                document.getElementById('result').innerHTML = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('result').innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        // Test backend connection
+        fetch('http://localhost:5000/api/status')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML = 'Backend Status: ' + JSON.stringify(data);
+            })
+            .catch(error => {
+                document.getElementById('result').innerHTML = 'Backend connection failed: ' + error.message;
+            });
+    </script>
+</body>
+</html>

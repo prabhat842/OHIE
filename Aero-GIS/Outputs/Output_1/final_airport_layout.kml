@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="1">
+        <Style id="2">
+            <PolyStyle id="3">
+                <color>11111199</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="4">
+            <PolyStyle id="5">
+                <color>FF8C00B3</color>
+                <colorMode>normal</colorMode>
+                <fill>1</fill>
+                <outline>1</outline>
+            </PolyStyle>
+        </Style>
+        <Placemark id="7">
+            <name>Runway</name>
+            <styleUrl>#2</styleUrl>
+            <Polygon id="6">
+                <outerBoundaryIs>
+                    <LinearRing id="8">
+                        <coordinates>78.3349200736487,17.331500647612742,0.0 78.36124358598546,17.331849506635837,0.0 78.36123584105319,17.332391283451173,0.0 78.334912251677,17.33204241285341,0.0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+        <Placemark id="11">
+            <name>Terminal/Apron</name>
+            <styleUrl>#4</styleUrl>
+            <Polygon id="10">
+                <outerBoundaryIs>
+                    <LinearRing id="12">
+                        <coordinates>78.3461771212026,17.333546815322915,0.0 78.34993766153138,17.33359665806167,0.0 78.34991173068305,17.335402563787106,0.0 78.34615115366265,17.335352715536466,0.0</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+        </Placemark>
+    </Document>
+</kml>

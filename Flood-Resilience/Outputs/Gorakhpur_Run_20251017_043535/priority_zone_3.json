@@ -1,0 +1,13 @@
+{
+  "zone_id": 3,
+  "zone_name": "Intelligent_Hotspot_AOI_3",
+  "bounds": {
+    "left": 375610.63060000003,
+    "bottom": 154380.6536,
+    "right": 376410.63060000003,
+    "top": 155180.6536
+  },
+  "population_exposure": 0.0,
+  "priority_pixels": 0,
+  "estimated_area_km2": 0.0
+}

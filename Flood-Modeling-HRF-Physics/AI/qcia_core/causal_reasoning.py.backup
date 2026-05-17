@@ -1,0 +1,477 @@
+"""
+Causal Reasoning Engine
+
+This module implements causal reasoning on top of discovered causal graphs:
+- Structural Causal Models (SCM): Represent data-generating processes
+- Interventions: Answer "What if I do X?" using do-calculus
+- Counterfactuals: Answer "What if I had done X?" given observations
+
+This implements Pearl's "Ladder of Causation":
+1. Observation: P(Y | X) - seeing
+2. Intervention: P(Y | do(X)) - doing
+3. Counterfactual: P(Y_x | X', Y) - imagining
+"""
+
+import pandas as pd
+import numpy as np
+import networkx as nx
+from typing import Dict, Optional, List, Tuple
+from sklearn.linear_model import LinearRegression
+import warnings
+
+from .causal_graph import CausalGraph
+
+
+class StructuralEquation:
+    """
+    Represents one structural equation in a Structural Causal Model.
+    
+    Each equation has the form:
+        Variable = f(Parents) + Noise
+    
+    For linear models:
+        Y = β₁·X₁ + β₂·X₂ + ... + ε
+    
+    Where:
+    - Parents are the direct causes
+    - Coefficients (β) are the causal effects
+    - Noise (ε) captures all other factors
+    
+    Example:
+        >>> eq = StructuralEquation('Temperature', ['Altitude'])
+        >>> eq.coefficients = {'Altitude': -0.006}
+        >>> eq.evaluate({'Altitude': 1000})  # Returns temperature at 1000m
+    """
+    
+    def __init__(self, variable: str, parents: List[str]):
+        """
+        Initialize a structural equation.
+        
+        Args:
+            variable: The variable this equation defines
+            parents: List of parent variables (causes)
+        """
+        self.variable = variable
+        self.parents = parents
+        self.coefficients: Dict[str, float] = {}  # β coefficients
+        self.intercept: float = 0.0  # Constant term
+        self.noise_std: float = 1.0  # Standard deviation of noise
+        
+    def evaluate(self, parent_values: Dict[str, float], 
+                 noise_value: Optional[float] = None) -> float:
+        """
+        Compute the value of this variable given parent values.
+        
+        Args:
+            parent_values: Dictionary mapping parent names to their values
+            noise_value: Specific noise value to use (if None, sample from distribution)
+        
+        Returns:
+            Value of the variable
+        """
+        # Deterministic part: f(Parents)
+        value = self.intercept
+        for parent in self.parents:
+            if parent in parent_values:
+                value += self.coefficients.get(parent, 0) * parent_values[parent]
+        
+        # Stochastic part: Noise
+        if noise_value is not None:
+            value += noise_value
+        else:
+            value += np.random.normal(0, self.noise_std)
+        
+        return value
+    
+    def __repr__(self):
+        eq_str = f"{self.variable} = "
+        if self.intercept != 0:
+            eq_str += f"{self.intercept:.3f} + "
+        
+        terms = []
+        for parent in self.parents:
+            coef = self.coefficients.get(parent, 0)
+            terms.append(f"{coef:.3f}·{parent}")
+        
+        eq_str += " + ".join(terms)
+        eq_str += f" + ε (σ={self.noise_std:.3f})"
+        return eq_str
+
+
+class StructuralCausalModel:
+    """
+    A Structural Causal Model (SCM) represents the data-generating process.
+    
+    An SCM consists of:
+    1. A causal graph (structure)
+    2. Structural equations (mechanisms)
+    3. Noise distributions (randomness)
+    
+    **Key Operations**:
+    - **Observation**: Sample from P(Y | X) - passive observation
+    - **Intervention**: Sample from P(Y | do(X)) - active manipulation
+    - **Counterfactual**: "What if X had been x, given we observed y?"
+    
+    **Example**:
+        >>> scm = StructuralCausalModel(causal_graph)
+        >>> scm.fit(data)
+        >>> # Intervention: What if we set X=10?
+        >>> samples = scm.intervene({'X': 10}, n_samples=1000)
+        >>> # Counterfactual: What if X had been 5, given X=3, Y=10?
+        >>> cf = scm.counterfactual({'X': 3, 'Y': 10}, {'X': 5})
+    """
+    
+    def __init__(self, causal_graph: CausalGraph):
+        """
+        Initialize an SCM from a causal graph.
+        
+        Args:
+            causal_graph: The causal structure (from Phase 1)
+        """
+        self.graph = causal_graph
+        self.equations: Dict[str, StructuralEquation] = {}
+        self._is_fitted = False
+        
+    def fit(self, data: pd.DataFrame):
+        """
+        Learn structural equations from data.
+        
+        This fits the functional forms and noise distributions:
+        - For each variable, learn f(Parents) using regression
+        - Estimate noise distribution from residuals
+        
+        Args:
+            data: DataFrame where columns are variables
+        """
+        print(f"\n🔧 Fitting Structural Causal Model...")
+        print(f"   Variables: {list(data.columns)}")
+        
+        # Check for cycles first
+        if not nx.is_directed_acyclic_graph(self.graph.graph):
+            print(f"   ⚠️  Graph has cycles - resolving...")
+            self._break_cycles()
+        
+        # Get topological order
+        try:
+            topological_order = list(nx.topological_sort(self.graph.graph))
+        except nx.NetworkXError:
+            raise ValueError("Cannot fit SCM: Graph still has cycles after resolution")
+        
+        for node in topological_order:
+            parents = list(self.graph.get_parents(node))
+            
+            if not parents:
+                # Root node (exogenous): just noise
+                eq = StructuralEquation(node, [])
+                eq.intercept = data[node].mean()
+                eq.noise_std = data[node].std()
+                self.equations[node] = eq
+                print(f"   {node}: Exogenous (root cause), μ={eq.intercept:.3f}, σ={eq.noise_std:.3f}")
+            else:
+                # Endogenous: learn from parents
+                X = data[parents].values
+                y = data[node].values
+                
+                # Fit linear structural equation
+                with warnings.catch_warnings():
+                    warnings.simplefilter("ignore")
+                    model = LinearRegression().fit(X, y)
+                
+                eq = StructuralEquation(node, parents)
+                eq.intercept = model.intercept_
+                
+                for i, parent in enumerate(parents):
+                    eq.coefficients[parent] = model.coef_[i]
+                
+                # Estimate noise from residuals
+                y_pred = model.predict(X)
+                eq.noise_std = np.std(y - y_pred)
+                
+                self.equations[node] = eq
+                print(f"   {node}: {eq}")
+        
+        self._is_fitted = True
+        print(f"✅ SCM fitted successfully!\n")
+    
+    def _break_cycles(self):
+        """
+        Break cycles in the graph by removing edges heuristically.
+        
+        When the PC algorithm can't fully orient all edges, we may have
+        bidirectional edges (X ↔ Y). This method breaks these cycles by
+        iteratively removing edges until we have a DAG.
+        
+        Note: This is a heuristic - with more data, PC would orient these edges.
+        """
+        max_iterations = 10
+        iteration = 0
+        
+        while not nx.is_directed_acyclic_graph(self.graph.graph) and iteration < max_iterations:
+            iteration += 1
+            
+            # Find a cycle
+            try:
+                cycle = nx.find_cycle(self.graph.graph)
+                if cycle:
+                    # Remove the first edge in the cycle
+                    edge_to_remove = cycle[0][:2]  # (u, v, direction) -> (u, v)
+                    print(f"      Removing edge: {edge_to_remove[0]} → {edge_to_remove[1]}")
+                    self.graph.remove_edge(edge_to_remove[0], edge_to_remove[1])
+            except nx.NetworkXNoCycle:
+                # No more cycles
+                break
+        
+        if not nx.is_directed_acyclic_graph(self.graph.graph):
+            print(f"      ⚠️  Warning: Could not fully resolve all cycles")
+        else:
+            print(f"      ✓ Graph is now acyclic")
+    
+    def sample(self, n_samples: int = 1) -> pd.DataFrame:
+        """
+        Sample from the observational distribution P(all variables).
+        
+        This is just generating data according to the learned model.
+        
+        Args:
+            n_samples: Number of samples to generate
+        
+        Returns:
+            DataFrame of samples
+        """
+        if not self._is_fitted:
+            raise ValueError("Must fit SCM before sampling")
+        
+        samples = {var: [] for var in self.equations.keys()}
+        
+        for _ in range(n_samples):
+            values = {}
+            
+            # Sample in topological order
+            for node in nx.topological_sort(self.graph.graph):
+                eq = self.equations[node]
+                parent_vals = {p: values[p] for p in eq.parents}
+                values[node] = eq.evaluate(parent_vals)
+                samples[node].append(values[node])
+        
+        return pd.DataFrame(samples)
+    
+    def intervene(self, interventions: Dict[str, float], 
+                  n_samples: int = 1000) -> pd.DataFrame:
+        """
+        Perform intervention do(X=x) and sample from resulting distribution.
+        
+        **What is an intervention?**
+        - We FORCE a variable to a specific value
+        - We "break" the equation for that variable
+        - Everything else follows the normal causal mechanism
+        
+        **Example**:
+        ```
+        Normal: X = f(Z) + noise, Y = g(X) + noise
+        do(X=5): X = 5 (forced!), Y = g(5) + noise
+        ```
+        
+        **This is different from conditioning!**
+        - P(Y | X=x): Observe X=x, see what Y tends to be
+        - P(Y | do(X=x)): Force X=x, see what Y becomes
+        
+        Args:
+            interventions: Dict of {variable: value} to set
+            n_samples: Number of samples to generate
+        
+        Returns:
+            DataFrame of samples from P(Y | do(X=x))
+        """
+        if not self._is_fitted:
+            raise ValueError("Must fit SCM before intervention")
+        
+        samples = {var: [] for var in self.equations.keys()}
+        
+        for _ in range(n_samples):
+            values = {}
+            
+            # Sample in topological order
+            for node in nx.topological_sort(self.graph.graph):
+                if node in interventions:
+                    # INTERVENTION: Force this variable to a specific value
+                    # We "break" its structural equation
+                    values[node] = interventions[node]
+                else:
+                    # NORMAL: Follow the structural equation
+                    eq = self.equations[node]
+                    parent_vals = {p: values[p] for p in eq.parents}
+                    values[node] = eq.evaluate(parent_vals)
+                
+                samples[node].append(values[node])
+        
+        return pd.DataFrame(samples)
+    
+    def counterfactual(self, observed: Dict[str, float],
+                      intervention: Dict[str, float]) -> Dict[str, float]:
+        """
+        Compute counterfactual: "What would Y have been if X=x, given actual observations?"
+        
+        **The Three-Step Process** (Pearl's algorithm):
+        
+        1. **Abduction**: Given observations, infer the noise values that generated them
+           - "Why did we observe these values?"
+           
+        2. **Action**: Create an intervened model (do(X=x))
+           - "Change the world"
+           
+        3. **Prediction**: Re-run with the SAME noise values
+           - "What would have happened in this alternate world?"
+        
+        **Example**:
+        ```
+        Observed: Marketing=$30K, Sales=$100K
+        Question: What if Marketing had been $50K?
+        
+        Step 1: Infer noise that led to Sales=$100K given Marketing=$30K
+        Step 2: Set Marketing=$50K (intervene)
+        Step 3: Recompute Sales with same noise → Counterfactual Sales
+        ```
+        
+        Args:
+            observed: Dict of actual observed values
+            intervention: Dict of counterfactual values to set
+        
+        Returns:
+            Dict of counterfactual values for all variables
+        """
+        if not self._is_fitted:
+            raise ValueError("Must fit SCM before counterfactual")
+        
+        # Step 1: ABDUCTION - Infer noise values from observations
+        noise_values = {}
+        values = observed.copy()
+        
+        for node in nx.topological_sort(self.graph.graph):
+            eq = self.equations[node]
+            
+            if node in observed:
+                # We observed this variable - back out the noise
+                parent_vals = {p: values.get(p, 0) for p in eq.parents}
+                
+                # Deterministic part
+                deterministic = eq.intercept
+                for parent in eq.parents:
+                    if parent in parent_vals:
+                        deterministic += eq.coefficients.get(parent, 0) * parent_vals[parent]
+                
+                # Noise = Observed - Deterministic
+                noise_values[node] = observed[node] - deterministic
+            else:
+                # We didn't observe this variable - can't infer noise exactly
+                # Use expected noise (0)
+                noise_values[node] = 0.0
+        
+        # Step 2 & 3: ACTION + PREDICTION
+        # Recompute values with intervention, using the SAME noise
+        cf_values = {}
+        
+        for node in nx.topological_sort(self.graph.graph):
+            if node in intervention:
+                # Intervene: force to counterfactual value
+                cf_values[node] = intervention[node]
+            else:
+                # Normal: compute using structural equation
+                eq = self.equations[node]
+                parent_vals = {p: cf_values[p] for p in eq.parents}
+                
+                # Use the SAME noise as in the actual world
+                cf_values[node] = eq.evaluate(parent_vals, noise_value=noise_values[node])
+        
+        return cf_values
+
+
+class CausalReasoningEngine:
+    """
+    High-level interface for causal queries.
+    
+    This wraps the SCM and provides convenient methods for:
+    - Computing causal effects
+    - Answering what-if questions
+    - Estimating treatment effects
+    
+    Example:
+        >>> engine = CausalReasoningEngine(causal_graph)
+        >>> engine.fit(data)
+        >>> effect = engine.compute_causal_effect('marketing', 'sales')
+        >>> print(f"Causal effect: {effect:.2f}")
+    """
+    
+    def __init__(self, causal_graph: CausalGraph):
+        """
+        Initialize reasoning engine with a causal graph.
+        
+        Args:
+            causal_graph: Discovered causal structure (from Phase 1)
+        """
+        self.graph = causal_graph
+        self.scm: Optional[StructuralCausalModel] = None
+    
+    def fit(self, data: pd.DataFrame):
+        """
+        Fit the structural causal model from data.
+        
+        Args:
+            data: DataFrame with observations
+        """
+        self.scm = StructuralCausalModel(self.graph)
+        self.scm.fit(data)
+    
+    def compute_causal_effect(self, treatment: str, outcome: str,
+                             treatment_values: Tuple[float, float] = (0.0, 1.0)) -> float:
+        """
+        Compute Average Causal Effect (ACE).
+        
+        ACE = E[Y | do(X=1)] - E[Y | do(X=0)]
+        
+        This answers: "How much does changing X affect Y?"
+        
+        Args:
+            treatment: Treatment variable
+            outcome: Outcome variable
+            treatment_values: (control, treated) values
+        
+        Returns:
+            Average causal effect
+        """
+        if self.scm is None:
+            raise ValueError("Must fit engine before computing effects")
+        
+        control_val, treated_val = treatment_values
+        
+        # Sample under both interventions
+        samples_control = self.scm.intervene({treatment: control_val}, n_samples=5000)
+        samples_treated = self.scm.intervene({treatment: treated_val}, n_samples=5000)
+        
+        # Compute average difference
+        ace = samples_treated[outcome].mean() - samples_control[outcome].mean()
+        
+        return ace
+    
+    def answer_counterfactual(self, query_var: str, 
+                             observed: Dict[str, float],
+                             intervention: Dict[str, float]) -> float:
+        """
+        Answer a counterfactual question.
+        
+        Example: "What would sales have been if marketing=$50K,
+                  given that we observed marketing=$30K and sales=$100K?"
+        
+        Args:
+            query_var: Variable we want the counterfactual value for
+            observed: What we actually observed
+            intervention: What we imagine doing differently
+        
+        Returns:
+            Counterfactual value
+        """
+        if self.scm is None:
+            raise ValueError("Must fit engine before counterfactuals")
+        
+        cf_values = self.scm.counterfactual(observed, intervention)
+        return cf_values[query_var]
+

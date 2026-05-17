@@ -1,0 +1,69 @@
+<!doctype html><html lang='en'><meta charset='utf-8'/><meta name='viewport' content='width=device-width, initial-scale=1'/>
+<title>QCIA Jabalpur Demo</title><style>
+body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:24px;}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));}
+.card{border:1px solid #ddd;border-radius:8px;padding:12px;box-shadow:0 1px 2px rgba(0,0,0,0.05);} 
+.card img{max-width:100%;height:auto;border-radius:6px;} .small{color:#555;font-size:14px} .kpi{font-weight:600}
+</style>
+<h2>QCIA Flood Demo – Jabalpur (20 km² AOI)</h2>
+<p class='kpi'>Baseline flooded roads (≥0.05 m): 60.029 km<br/>Agent design: 57.351 km<br/>Improvement: 4.5%</p>
+<div class='grid'>
+  <div class='card'><h3>Baseline overlay</h3><img src='baseline_overlay.png'/></div>
+  <div class='card'><h3>Agent overlay</h3><img src='agent_overlay.png'/></div>
+  <div class='card'><h3>Baseline vs Agent (compare)</h3><img src='compare_overlay.png'/></div>
+  <div class='card'><h3>Depth field (baseline)</h3><img src='final_h_baseline.png'/></div>
+  <div class='card'><h3>Depth field (agent)</h3><img src='final_h_agent.png'/></div>
+</div>
+<hr/><h3>Pilot guide</h3><div class='card'><pre>### Pilot checklist (what you need)<br/><br/>- Objectives/KPIs<br/>  - Define AOIs (Dehradun/Jabalpur), target roads/POIs, KPI thresholds (e.g., roads &lt; 5 cm, duration &lt; 30 min), budget caps.<br/><br/>- Data (per city; prefer district-wide cached, then clip)<br/>  - DEM: 1–5 m if available (LiDAR/CartoDEM v3.1 min). Hydro‑enforced if possible.<br/>  - LULC: ≥10 m (Sentinel, ESRI, or state GIS).<br/>  - Hydrology: rain gauges/IMD gridded rain; river stage/discharge hydrographs (WRD/IMD/NIH/CEEW partners).<br/>  - Networks: OSM rivers/drains/canals/roads; municipal drain maps if available.<br/>  - Structures: bridges/culverts (as‑built if possible); storm outfalls; siphons.<br/>  - Ground truth: flood marks, photos, prior studies, damage logs.<br/><br/>- Permissions &amp; governance<br/>  - Data licenses/MOUs, NDA with agency; right to publish pilot results; point of contact for validation.<br/><br/>- Compute &amp; environment<br/>  - One CPU box (8–16 cores, 32–64 GB RAM), 50–200 GB disk.<br/>  - Pinned env (requirements.txt), fixed PROJ/GDAL install; one‑command runner.<br/><br/>- Workflow setup<br/>  - Cache regional datasets; AOI clipper.<br/>  - Baseline DW‑FV run at 50 m (screening), hot‑spot tiles at 10–20 m.<br/>  - Crossings‑only culverts with cost; bridges/weirs; spatial Manning from LULC.<br/>  - KPIs: flooded road km by class, POI access, depth/area, duration.<br/>  - Exports: KMZs, contour KMLs, PNG panels, KPI CSVs.<br/><br/>- Calibration/validation<br/>  - Pick 1–2 historical events with gauges/marks.<br/>  - Calibrate roughness/infiltration and channel n; verify mass balance; compare depths/stages/RMSE.<br/><br/>- SLM integration (optional but useful)<br/>  - Objective parsing → KPI targets/budget; design proposals from crossing candidates; compliance checks; stakeholder narration.<br/><br/>- Deliverables<br/>  - Baseline vs “selected” design KMZs, hotspot overlays, contour KMLs.<br/>  - KPI tables (by road class/ward), budget and cost summary.<br/>  - Short report (method, assumptions, calibration, benefits, next steps).<br/>  - Live demo deck (2–3 slides per AOI).<br/><br/>- Timeline (typical)<br/>  - Week 1: data + setup + first baseline.<br/>  - Week 2: calibration + KPIs.<br/>  - Week 3: agent designs + iterate with stakeholders.<br/>  - Week 4: high‑res hotspots + final package/demo.<br/><br/>- Risks to de‑risk early<br/>  - DEM quality/hydro‑enforcement, missing structures, boundary hydrographs, CRS mismatches.<br/></pre></div>
+<footer class='small'>QCIA HRF Toolkit</footer></html>### Pilot checklist (what you need)
+
+- Objectives/KPIs
+  - Define AOIs (Dehradun/Jabalpur), target roads/POIs, KPI thresholds (e.g., roads < 5 cm, duration < 30 min), budget caps.
+
+- Data (per city; prefer district-wide cached, then clip)
+  - DEM: 1–5 m if available (LiDAR/CartoDEM v3.1 min). Hydro‑enforced if possible.
+  - LULC: ≥10 m (Sentinel, ESRI, or state GIS).
+  - Hydrology: rain gauges/IMD gridded rain; river stage/discharge hydrographs (WRD/IMD/NIH/CEEW partners).
+  - Networks: OSM rivers/drains/canals/roads; municipal drain maps if available.
+  - Structures: bridges/culverts (as‑built if possible); storm outfalls; siphons.
+  - Ground truth: flood marks, photos, prior studies, damage logs.
+
+- Permissions & governance
+  - Data licenses/MOUs, NDA with agency; right to publish pilot results; point of contact for validation.
+
+- Compute & environment
+  - One CPU box (8–16 cores, 32–64 GB RAM), 50–200 GB disk.
+  - Pinned env (requirements.txt), fixed PROJ/GDAL install; one‑command runner.
+
+- Workflow setup
+  - Cache regional datasets; AOI clipper.
+  - Baseline DW‑FV run at 50 m (screening), hot‑spot tiles at 10–20 m.
+  - Crossings‑only culverts with cost; bridges/weirs; spatial Manning from LULC.
+  - KPIs: flooded road km by class, POI access, depth/area, duration.
+  - Exports: KMZs, contour KMLs, PNG panels, KPI CSVs.
+
+- Calibration/validation
+  - Pick 1–2 historical events with gauges/marks.
+  - Calibrate roughness/infiltration and channel n; verify mass balance; compare depths/stages/RMSE.
+
+- SLM integration (optional but useful)
+  - Objective parsing → KPI targets/budget; design proposals from crossing candidates; compliance checks; stakeholder narration.
+
+- Deliverables
+  - Baseline vs “selected” design KMZs, hotspot overlays, contour KMLs.
+  - KPI tables (by road class/ward), budget and cost summary.
+  - Short report (method, assumptions, calibration, benefits, next steps).
+  - Live demo deck (2–3 slides per AOI).
+
+- Timeline (typical)
+  - Week 1: data + setup + first baseline.
+  - Week 2: calibration + KPIs.
+  - Week 3: agent designs + iterate with stakeholders.
+  - Week 4: high‑res hotspots + final package/demo.
+
+- Risks to de‑risk early
+  - DEM quality/hydro‑enforcement, missing structures, boundary hydrographs, CRS mismatches.
+
+
+</pre></section>
+<footer class='small'>QCIA HRF Toolkit • Jabalpur demo</footer></body></html>

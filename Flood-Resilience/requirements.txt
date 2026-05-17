@@ -1,0 +1,49 @@
+# ==============================================================================
+# Project: Gorakhpur Urban Resilience AI (repurposed from AeroGis AI)
+#
+# Instructions:
+# 1. It is highly recommended to create a Python virtual environment.
+#    python -m venv venv
+#    source venv/bin/activate  (on Linux/macOS)
+#    venv\Scripts\activate    (on Windows)
+#
+# 2. Install all dependencies using pip:
+#    pip install -r requirements.txt
+#
+# 3. For PyTorch (GPU acceleration), see the special note below.
+# ==============================================================================
+
+# --- Core Scientific & Data Handling ---
+# Used for numerical operations, array manipulation, and scientific algorithms.
+numpy
+scipy
+
+# --- Geospatial Data Processing ---
+# Essential for reading, writing, and manipulating GIS raster and vector data.
+# Note: Installing geopandas will automatically pull in pandas, shapely, fiona, etc.
+rasterio
+geopandas
+pyproj
+
+# --- AI & Optimization Libraries ---
+# DEAP is the genetic algorithm framework for the Intervention Planner (Stage 2).
+# Scikit-optimize is the Bayesian optimization framework for the Detailed Engineer (Stage 3).
+deap
+scikit-optimize
+
+# --- Visualization & 3D Modeling ---
+# Matplotlib is for 2D/3D plotting and reports.
+# SimpleKML is for exporting .kml files for Google Earth.
+# Trimesh is for creating and exporting the final 3D .glb CAD model.
+matplotlib
+simplekml
+trimesh
+
+# --- High-Performance Computing (Optional but Highly Recommended for Stage 3) ---
+# PyTorch enables the high-fidelity flood solver to run on a GPU (CUDA/MPS),
+# providing a massive speedup for the engineering simulation.
+#
+# IMPORTANT: For GPU support, do NOT just `pip install torch`.
+# Visit the official PyTorch website to get the correct installation command
+# for your specific system and CUDA version: https://pytorch.org/get-started/locally/
+torch

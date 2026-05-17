@@ -1,0 +1,24 @@
+{
+    "runways": [
+        {
+            "id": 1,
+            "center_x": 1500.0,
+            "center_y": 472.8428590789365,
+            "length": 2800,
+            "width": 60
+        }
+    ],
+    "taxiway": {
+        "side": "top",
+        "offset": 180
+    },
+    "terminals": [
+        {
+            "id": 1,
+            "footprint_x": 1297.1779010960493,
+            "footprint_y": 652.8428590789365,
+            "width": 400,
+            "height": 200
+        }
+    ]
+}

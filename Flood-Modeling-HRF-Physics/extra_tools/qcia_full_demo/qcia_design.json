@@ -1,0 +1,342 @@
+{
+  "num_interventions": 20,
+  "total_cost_cr": 11.125,
+  "expected_total_impact": 6.721797779202462,
+  "target_reduction_pct": 20.0,
+  "feasibility_estimate": {
+    "baseline_flooded_km": 0.0,
+    "target_reduction_pct": 20.0,
+    "target_flooded_km": 0.0,
+    "expected_flooded_km": 0.0,
+    "feasible_under_budget": true
+  },
+  "interventions": [
+    {
+      "location": [
+        33,
+        30
+      ],
+      "location_utm": [
+        3300.0,
+        3000.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.4502859771251678,
+      "flood_depth_before": 1.0006355047225952,
+      "is_lowland": 1.0,
+      "benefit_cost_ratio": 1.5009532570838926,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        34,
+        15
+      ],
+      "location_utm": [
+        3400.0,
+        1500.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.26734237074851985,
+      "flood_depth_before": 0.5940941572189331,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.8911412358283995,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        41,
+        27
+      ],
+      "location_utm": [
+        4100.0,
+        2700.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.22470938265323637,
+      "flood_depth_before": 0.49935418367385864,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.7490312755107879,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        49,
+        11
+      ],
+      "location_utm": [
+        4900.0,
+        1100.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.20936576575040816,
+      "flood_depth_before": 0.4652572572231293,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.6978858858346938,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        55,
+        1
+      ],
+      "location_utm": [
+        5500.0,
+        100.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.19465890526771545,
+      "flood_depth_before": 0.4325753450393677,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.6488630175590515,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        10,
+        2
+      ],
+      "location_utm": [
+        1000.0,
+        200.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.1475231721997261,
+      "flood_depth_before": 0.3278292715549469,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.49174390733242035,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        62,
+        5
+      ],
+      "location_utm": [
+        6200.0,
+        500.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.1388959139585495,
+      "flood_depth_before": 0.30865758657455444,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.46298637986183167,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        23,
+        12
+      ],
+      "location_utm": [
+        2300.0,
+        1200.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.10043257400393485,
+      "flood_depth_before": 0.2231834977865219,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.3347752466797828,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        18,
+        19
+      ],
+      "location_utm": [
+        1800.0,
+        1900.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.1002983696758747,
+      "flood_depth_before": 0.22288526594638824,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.3343278989195823,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        5,
+        9
+      ],
+      "location_utm": [
+        500.0,
+        900.0
+      ],
+      "type": "culvert_box_2x2",
+      "causal_impact": 0.06814668327569962,
+      "flood_depth_before": 0.15143707394599915,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.22715561091899872,
+      "cost_lakh": 20.0
+    },
+    {
+      "location": [
+        75,
+        19
+      ],
+      "location_utm": [
+        7500.0,
+        1900.0
+      ],
+      "type": "smart_valve_network",
+      "causal_impact": 0.6968812018632888,
+      "flood_depth_before": 0.3291749358177185,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.16894089742140336,
+      "cost_lakh": 275.0
+    },
+    {
+      "location": [
+        17,
+        7
+      ],
+      "location_utm": [
+        1700.0,
+        700.0
+      ],
+      "type": "smart_valve_network",
+      "causal_impact": 0.6692487716674804,
+      "flood_depth_before": 0.2923316955566406,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.16224212646484373,
+      "cost_lakh": 275.0
+    },
+    {
+      "location": [
+        82,
+        31
+      ],
+      "location_utm": [
+        8200.0,
+        3100.0
+      ],
+      "type": "smart_valve_network",
+      "causal_impact": 0.6313346967101097,
+      "flood_depth_before": 0.24177959561347961,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 0.1530508355660872,
+      "cost_lakh": 275.0
+    },
+    {
+      "location": [
+        85,
+        24
+      ],
+      "location_utm": [
+        8500.0,
+        2400.0
+      ],
+      "type": "levee_earthen",
+      "causal_impact": 0.4118725329637527,
+      "flood_depth_before": 0.45763614773750305,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 2.1966535091400146,
+      "cost_lakh": 12.5
+    },
+    {
+      "location": [
+        71,
+        29
+      ],
+      "location_utm": [
+        7100.0,
+        2900.0
+      ],
+      "type": "levee_earthen",
+      "causal_impact": 0.3052756726741791,
+      "flood_depth_before": 0.339195191860199,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 1.6281369209289551,
+      "cost_lakh": 12.5
+    },
+    {
+      "location": [
+        78,
+        75
+      ],
+      "location_utm": [
+        7800.0,
+        7500.0
+      ],
+      "type": "levee_earthen",
+      "causal_impact": 0.5201347231864929,
+      "flood_depth_before": 0.5779274702072144,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 2.7740518569946286,
+      "cost_lakh": 12.5
+    },
+    {
+      "location": [
+        55,
+        51
+      ],
+      "location_utm": [
+        5500.0,
+        5100.0
+      ],
+      "type": "levee_earthen",
+      "causal_impact": 0.4941187441349029,
+      "flood_depth_before": 0.5490208268165588,
+      "is_lowland": 1.0,
+      "benefit_cost_ratio": 2.6352999687194822,
+      "cost_lakh": 12.5
+    },
+    {
+      "location": [
+        72,
+        54
+      ],
+      "location_utm": [
+        7200.0,
+        5400.0
+      ],
+      "type": "levee_earthen",
+      "causal_impact": 0.416999414563179,
+      "flood_depth_before": 0.4633326828479767,
+      "is_lowland": 1.0,
+      "benefit_cost_ratio": 2.223996877670288,
+      "cost_lakh": 12.5
+    },
+    {
+      "location": [
+        7,
+        72
+      ],
+      "location_utm": [
+        700.0,
+        7200.0
+      ],
+      "type": "levee_earthen",
+      "causal_impact": 0.3429580003023147,
+      "flood_depth_before": 0.38106444478034973,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 1.8291093349456786,
+      "cost_lakh": 12.5
+    },
+    {
+      "location": [
+        86,
+        63
+      ],
+      "location_utm": [
+        8600.0,
+        6300.0
+      ],
+      "type": "levee_earthen",
+      "causal_impact": 0.33131490647792816,
+      "flood_depth_before": 0.3681276738643646,
+      "is_lowland": 0.0,
+      "benefit_cost_ratio": 1.7670128345489502,
+      "cost_lakh": 12.5
+    }
+  ],
+  "causal_graph_edges": [
+    "terrain_slope \u2192 is_lowland (strength=1.000, conf=0.800)",
+    "distance_to_drain \u2192 distance_to_road (strength=1.000, conf=0.800)",
+    "terrain_slope \u2192 flood_depth (strength=1.000, conf=1.000)",
+    "is_lowland \u2192 flood_depth (strength=1.000, conf=1.000)",
+    "distance_to_drain \u2192 flood_depth (strength=1.000, conf=1.000)"
+  ]
+}
